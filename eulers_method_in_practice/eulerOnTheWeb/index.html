@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Euler's Method in Practice</title>
+		<style type="text/css">
+			p {
+				color: white;
+				text-align: center; }
+			legend {
+				color: white;
+				text-align: left; }
+			.fieldset-auto-width {
+         		display: inline-block;
+				text-align: center; 
+				vertical-align:text-top;}
+		</style>
+	    <script type="text/javascript" src="processing.js"></script>
+		<script type="text/javascript">
+			var bound = false;
+			var pjs;
+	
+			function bindJavascript() {
+	        	pjs = Processing.getInstanceById('eulers_method_in_practice');
+	        	if(pjs!=null) {
+	          		pjs.bindJavascript(this);
+	          		bound = true; }
+	        	if(!bound) setTimeout(bindJavascript, 250);
+	      	}
+	
+	      	bindJavascript();
+			
+	        function setAngle() {
+	            var x = Number(document.getElementById('angle').value);
+	 			document.getElementById('angleDisplay').value = x;
+	            pjs.setAngle(x);
+			}
+	        function setMass() {
+	            var x = Number(document.getElementById('mass').value);
+	 			document.getElementById('massDisplay').value = x;
+	            pjs.setMass(x);
+			}
+              function setVelocity() {
+	            var x = Number(document.getElementById('velocity').value);
+	 			document.getElementById('velocityDisplay').value = x;
+	            pjs.setVelocity(x);
+			}
+			function showValues(mass) {
+				//inputs
+    			document.getElementById('mass').value = mass;
+            }
+        </script>
+	</head>
+	<body style="background-color: #252525">
+		<div style="text-align: center;">
+			<p><canvas id="eulers_method_in_practice" data-processing-sources="eulers_method_in_practice.pde"></canvas><p>
+			
+			<fieldset class="fieldset-auto-width">
+				<legend>Inputs</legend>
+				<p >mass (kg)
+					<input 
+					type="range" 
+					id="mass" 
+					onchange="setMass()"
+					min="100"
+					max="2700"
+					step="1"
+					value="1900">
+					</input><output type="text" id="massDisplay" value="">1900</output>
+				</p>
+				<p >velocity
+					<input 
+					type="range" 
+					id="velocity" 
+					onchange="setVelocity()"
+					min="100"
+					max="1000"
+					step="1"
+					value="840">
+					</input><output type="text" id="velocityDisplay" value="">840</output>
+				</p>
+                <p >angle
+					<input 
+					type="range" 
+					id="angle" 
+					onchange="setAngle()"
+					min="0"
+					max="90"
+					step="1"
+					value="0">
+					</input><output type="text" id="angleDisplay" value="">0</output>
+				</p>
+			</fieldset>
+			<!--<fieldset class="fieldset-auto-width">
+				<legend>Outputs</legend>
+				<p id="foo"> </p>
+			</fieldset>-->
+		</div>
+	</body>
+</html>
